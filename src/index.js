@@ -14,16 +14,39 @@ const onClickAdd = () => {
   li.innerText = inputText;
 
   // button生成
-  //delete
+
+  //complete
   const completeButton = document.createElement("button");
   completeButton.innerText = "complete";
   completeButton.addEventListener("click", () => {
+    //完了に追加する処理
     deletelist(deleteButton.parentNode);
+    const addTarget = completeButton.parentNode;
+    //テキストの取得
+    const text = addTarget.firstElementChild.innerText;
+    //div以下を初期化する
+    addTarget.textContent = null;
+
+    //li生成
+    const li = document.createElement("li");
+    li.innerText = text;
+
+    const backButton = document.createElement("button");
+    backButton.innerText = "back";
+
+    addTarget.appendChild(li);
+    addTarget.appendChild(backButton);
+
+    //完了に追加
+    document.getElementById("complete-list").appendChild(addTarget);
   });
-  //complete
+
+  //delete
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "delete";
-  deleteButton.addEventListener("click", () => {});
+  deleteButton.addEventListener("click", () => {
+    deletelist(deleteButton.parentNode);
+  });
 
   //div 要素追加
   div.appendChild(li);
